@@ -1,6 +1,6 @@
-import React from "react"
-import { connect } from "react-redux"
-import { View, Text, StyleSheet } from "react-native"
+import React from 'react'
+import { connect } from 'react-redux'
+import { View, Text, StyleSheet } from 'react-native'
 
 const SignupScreen = () => {
 	return (

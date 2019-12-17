@@ -1,6 +1,6 @@
-import React from "react"
-import { connect } from "react-redux"
-import { View, Text, StyleSheet } from "react-native"
+import React from 'react'
+import { connect } from 'react-redux'
+import { View, Text, StyleSheet } from 'react-native'
 
 const ProjectListScreen = () => {
 	return (
@@ -12,4 +12,10 @@ const ProjectListScreen = () => {
 
 const styles = StyleSheet.create({})
 
-export default connect()(ProjectListScreen)
+const mapStateToProps = state => {
+	return {
+		projects: state
+	}
+}
+
+export default connect(mapStateToProps)(ProjectListScreen)
