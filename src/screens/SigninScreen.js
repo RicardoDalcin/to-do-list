@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { StyleSheet } from 'react-native'
-import { addProject, authenticate } from '../actions'
+import { authenticate } from '../actions'
 import { Text, Button, Input } from 'react-native-elements'
 import Spacer from '../components/Spacer'
 import { Feather } from '@expo/vector-icons'
+import Link from '../components/Link'
 
-const SigninScreen = ({ dispatch }) => {
+const SigninScreen = ({ dispatch, auth }) => {
 	const [login, setLogin] = useState('')
 	const [password, setPassword] = useState('')
 
@@ -41,9 +42,9 @@ const SigninScreen = ({ dispatch }) => {
 					secureTextEntry
 				/>
 			</Spacer>
-			{/* {errorMessage ? (
-				<Text style={styles.errorMessage}>{errorMessage}</Text>
-			) : null} */}
+			{auth.error ? (
+				<Text style={styles.errorMessage}>{auth.error}</Text>
+			) : null}
 			<Spacer>
 				<Button
 					title='Sign in'
@@ -51,6 +52,7 @@ const SigninScreen = ({ dispatch }) => {
 					onPress={() => dispatch(authenticate({ login, password }))}
 				/>
 			</Spacer>
+			<Link text='Have no account created? Sign up here!' routeName='Signup' />
 		</>
 	)
 }
@@ -81,4 +83,6 @@ const styles = StyleSheet.create({
 	}
 })
 
-export default connect()(SigninScreen)
+const mapStateToProps = ({ auth }) => ({ auth })
+
+export default connect(mapStateToProps)(SigninScreen)

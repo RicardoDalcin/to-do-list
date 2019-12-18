@@ -72,7 +72,7 @@ export const signout = () => {
 	return async dispatch => {
 		await AsyncStorage.removeItem('token')
 		dispatch(signoutSuccess())
-		// navigate
+		navigate('Signin')
 	}
 }
 

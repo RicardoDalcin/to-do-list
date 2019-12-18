@@ -11,10 +11,12 @@ import SigninScreen from './src/screens/SigninScreen'
 import SignupScreen from './src/screens/SignupScreen'
 import ProjectListScreen from './src/screens/ProjectListScreen'
 import ProjectDetailScreen from './src/screens/ProjectDetailScreen'
+import LoadingScreen from './src/screens/LoadingScreen'
 
 const store = createStore(rootReducer, applyMiddleware(thunk))
 
 const switchNavigator = createSwitchNavigator({
+	Loading: LoadingScreen,
 	loginFlow: createStackNavigator({
 		Signin: SigninScreen,
 		Signup: SignupScreen
