@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import rootReducer from './src/reducers'
 import thunk from 'redux-thunk'
 
+import { setNavigator } from './src/navigationRef'
 import { createAppContainer, createSwitchNavigator } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import SigninScreen from './src/screens/SigninScreen'
@@ -29,7 +30,11 @@ const App = createAppContainer(switchNavigator)
 export default () => {
 	return (
 		<Provider store={store}>
-			<App />
+			<App
+				ref={navigator => {
+					setNavigator(navigator)
+				}}
+			/>
 		</Provider>
 	)
 }
