@@ -1,15 +1,17 @@
-import React from "react"
-import { createStore } from "redux"
-import { Provider } from "react-redux"
-import { createAppContainer, createSwitchNavigator } from "react-navigation"
-import { createStackNavigator } from "react-navigation-stack"
-import SigninScreen from "./src/screens/SigninScreen"
-import SignupScreen from "./src/screens/SignupScreen"
-import ProjectListScreen from "./src/screens/ProjectListScreen"
-import ProjectDetailScreen from "./src/screens/ProjectDetailScreen"
-import projectReducer from "./src/reducers/projectReducer"
+import React from 'react'
+import { createStore, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux'
+import rootReducer from './src/reducers'
+import thunk from 'redux-thunk'
 
-const store = createStore(projectReducer)
+import { createAppContainer, createSwitchNavigator } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation-stack'
+import SigninScreen from './src/screens/SigninScreen'
+import SignupScreen from './src/screens/SignupScreen'
+import ProjectListScreen from './src/screens/ProjectListScreen'
+import ProjectDetailScreen from './src/screens/ProjectDetailScreen'
+
+const store = createStore(rootReducer, applyMiddleware(thunk))
 
 const switchNavigator = createSwitchNavigator({
 	loginFlow: createStackNavigator({
