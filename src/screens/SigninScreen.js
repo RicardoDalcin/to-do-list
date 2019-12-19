@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { StyleSheet } from 'react-native'
-import { authenticate } from '../actions'
+import { NavigationEvents } from 'react-navigation'
+import { authenticate, clearAuthError } from '../actions'
 import { Text, Button, Input } from 'react-native-elements'
 import Spacer from '../components/Spacer'
 import { Feather } from '@expo/vector-icons'
@@ -13,6 +14,7 @@ const SigninScreen = ({ dispatch, auth }) => {
 
 	return (
 		<>
+			<NavigationEvents onWillFocus={() => dispatch(clearAuthError())} />
 			<Spacer>
 				<Text h3 style={styles.title}>
 					Sign In

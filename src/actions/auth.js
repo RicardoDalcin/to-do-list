@@ -79,3 +79,9 @@ export const signout = () => {
 const signoutSuccess = () => ({
 	type: SIGNOUT
 })
+
+export const clearAuthError = () => {
+	return dispatch => {
+		dispatch({ type: CLEAR_AUTH_ERROR })
+	}
+}
