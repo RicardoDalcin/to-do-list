@@ -22,13 +22,16 @@ const ProjectListScreen = ({ dispatch, projects }) => {
 	return (
 		<View>
 			<Header
-				// leftComponent={{ icon: 'menu', color: '#fff' }}
 				backgroundColor='#7371fc'
 				centerComponent={{
 					text: 'My Projects',
 					style: { color: '#fff', fontSize: 16 }
 				}}
-				rightComponent={{ icon: 'settings', color: '#fff' }}
+				rightComponent={
+					<TouchableOpacity onPress={() => navigate('ProjectDetail')}>
+						<Feather size={22} name='settings' style={styles.settings} />
+					</TouchableOpacity>
+				}
 			/>
 			<NavigationEvents onWillFocus={() => dispatch(fetchProjects())} />
 			<StatusBar barStyle='light-content' />
@@ -41,31 +44,14 @@ const ProjectListScreen = ({ dispatch, projects }) => {
 	)
 }
 
-const HeaderButton = () => (
-	<View>
-		<TouchableOpacity onPress={() => navigate('ProjectDetail')}>
-			<Feather size={22} name='settings' style={styles.settings} />
-		</TouchableOpacity>
-	</View>
-)
-
 ProjectListScreen.navigationOptions = {
 	header: null
-	// title: 'My Projects',
-	// headerStyle: {
-	// 	backgroundColor: '#7371FC'
-	// },
-	// headerTintColor: '#FFFAFB',
-	// headerRight: <HeaderButton />
 }
 
 const styles = StyleSheet.create({
 	settings: {
 		color: '#fff',
 		marginRight: 10
-	},
-	linearGradient: {
-		flex: 1
 	}
 })
 
