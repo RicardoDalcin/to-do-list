@@ -16,27 +16,17 @@ import { NavigationEvents } from 'react-navigation'
 import { navigate } from '../navigationRef'
 import ProjectListItem from '../components/ProjectListItem'
 import { Header } from 'react-native-elements'
+import AppHeader from '../components/AppHeader'
 
 const ProjectListScreen = ({ dispatch, projects }) => {
 	console.log(projects.projects)
 	return (
-		<View>
-			<Header
-				backgroundColor='#7371fc'
-				centerComponent={{
-					text: 'My Projects',
-					style: { color: '#fff', fontSize: 16 }
-				}}
-				rightComponent={
-					<TouchableOpacity onPress={() => navigate('ProjectDetail')}>
-						<Feather size={22} name='settings' style={styles.settings} />
-					</TouchableOpacity>
-				}
-			/>
+		<View style={styles.container}>
+			<AppHeader title='My Projects' />
 			<NavigationEvents onWillFocus={() => dispatch(fetchProjects())} />
-			<StatusBar barStyle='light-content' />
 			<FlatList
 				data={projects.projects}
+				contentContainerStyle={{ flexGrow: 1 }}
 				keyExtractor={proj => proj._id}
 				renderItem={({ item }) => <ProjectListItem project={item} />}
 			/>
@@ -49,9 +39,8 @@ ProjectListScreen.navigationOptions = {
 }
 
 const styles = StyleSheet.create({
-	settings: {
-		color: '#fff',
-		marginRight: 10
+	container: {
+		flex: 1
 	}
 })
 
