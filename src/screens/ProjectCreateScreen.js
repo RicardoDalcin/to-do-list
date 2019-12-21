@@ -7,14 +7,12 @@ import { navigate } from '../navigationRef'
 import { Input, ListItem, Text, Overlay, Icon } from 'react-native-elements'
 import { ScrollView } from 'react-native-gesture-handler'
 import { addProject } from '../actions'
+import ColorPicker from '../components/ColorPicker'
 
 const ProjectCreateScreen = ({ dispatch, navigation }) => {
 	const [title, setTitle] = useState('')
 	const [color, setColor] = useState('#A594F9')
 	const [overlay, setOverlay] = useState(false)
-
-	const inputTitle = useRef(null)
-	const inputColor = useRef(null)
 
 	return (
 		<View style={styles.container}>
@@ -37,56 +35,13 @@ const ProjectCreateScreen = ({ dispatch, navigation }) => {
 					</TouchableOpacity>
 				}
 			/>
-			<Overlay
-				height={150}
-				isVisible={overlay}
-				onBackdropPress={() => setOverlay(false)}
-			>
-				<FlatList
-					contentContainerStyle={{
-						display: 'flex',
-						flex: 1,
-						flexDirection: 'column',
-						justifyContent: 'center',
-						alignItems: 'center'
-					}}
-					numColumns={6}
-					data={[
-						'#A594F9',
-						'#d5aaff',
-						'#6eb5ff',
-						'#ace7ff',
-						'#85ead7',
-						'#aff8db',
-						'#ccffdd',
-						'#e7ffac',
-						'#fff5ba',
-						'#ffdac1',
-						'#ffb7b2',
-						'#ff9aa2'
-					]}
-					keyExtractor={item => item}
-					renderItem={({ item }) => (
-						<TouchableOpacity
-							onPress={() => {
-								setColor(item)
-								setOverlay(false)
-							}}
-							style={{ margin: 5 }}
-						>
-							<Icon
-								name='circle'
-								type='material-community'
-								size={30}
-								color={item}
-							/>
-						</TouchableOpacity>
-					)}
-				/>
-			</Overlay>
+			<ColorPicker
+				setColor={setColor}
+				overlay={overlay}
+				setOverlay={setOverlay}
+			/>
 			<ScrollView style={{ margin: 15, flex: 1 }}>
 				<Input
-					ref={inputTitle}
 					value={title}
 					onChangeText={setTitle}
 					placeholder='Name your project'
