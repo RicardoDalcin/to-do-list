@@ -1,15 +1,42 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { Feather } from '@expo/vector-icons'
+import AppHeader from '../components/AppHeader'
+import { navigate } from '../navigationRef'
 
-const ProjectDetailScreen = () => {
+const ProjectDetailScreen = ({ navigation, projects }) => {
+	const project = projects.projects.find(
+		proj => proj._id === navigation.getParam('_id')
+	)
+
 	return (
-		<View>
-			<Text>ProjectDetailScreen</Text>
+		<View style={styles.container}>
+			<AppHeader
+				leftComponent={
+					<TouchableOpacity onPress={() => navigate('ProjectList')}>
+						<Feather size={30} name='chevron-left' style={styles.backIcon} />
+					</TouchableOpacity>
+				}
+				title={project.title}
+			/>
 		</View>
 	)
 }
 
-const styles = StyleSheet.create({})
+ProjectDetailScreen.navigationOptions = {
+	header: null
+}
 
-export default connect()(ProjectDetailScreen)
+const styles = StyleSheet.create({
+	container: {
+		flex: 1
+	},
+	backIcon: {
+		color: '#fff'
+	}
+})
+
+const mapStateToProps = ({ projects }) => ({ projects })
+
+export default connect(mapStateToProps)(ProjectDetailScreen)

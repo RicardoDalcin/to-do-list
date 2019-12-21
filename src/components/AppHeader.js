@@ -3,7 +3,7 @@ import { StatusBar, TouchableOpacity, StyleSheet } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 import { Header } from 'react-native-elements'
 
-const AppHeader = ({ title, leftComponent = null }) => {
+const AppHeader = ({ title = '', leftComponent = null }) => {
 	return (
 		<>
 			<Header

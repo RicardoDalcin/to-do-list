@@ -24,21 +24,6 @@ export const fetchProjects = () => {
 	}
 }
 
-export const addProject = ({ title, description, color }) => {
-	return (dispatch, getState) => {
-		dispatch(addProjectStarted())
-
-		todoApi
-			.post('/projects', { title, description, color })
-			.then(res => {
-				dispatch(addProjectSuccess(res.data))
-			})
-			.catch(err => {
-				dispatch(addProjectFailure(err.response.data.error))
-			})
-	}
-}
-
 const fetchProjectsStarted = () => ({
 	type: FETCH_PROJECTS_STARTED
 })
@@ -54,6 +39,22 @@ const fetchProjectsFailure = error => ({
 		error
 	}
 })
+
+export const addProject = ({ title, color }) => {
+	return (dispatch, getState) => {
+		dispatch(addProjectStarted())
+
+		todoApi
+			.post('/projects', { title, color })
+			.then(res => {
+				dispatch(addProjectSuccess(res.data))
+			})
+			.catch(err => {
+				console.log(err.message)
+				dispatch(addProjectFailure(err.response.data.error))
+			})
+	}
+}
 
 const addProjectSuccess = project => ({
 	type: ADD_PROJECT_SUCCESS,

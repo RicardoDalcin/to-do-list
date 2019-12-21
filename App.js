@@ -12,6 +12,7 @@ import SignupScreen from './src/screens/SignupScreen'
 import ProjectListScreen from './src/screens/ProjectListScreen'
 import ProjectDetailScreen from './src/screens/ProjectDetailScreen'
 import LoadingScreen from './src/screens/LoadingScreen'
+import ProjectCreateScreen from './src/screens/ProjectCreateScreen'
 
 const store = createStore(rootReducer, applyMiddleware(thunk))
 
@@ -23,6 +24,7 @@ const switchNavigator = createSwitchNavigator({
 	}),
 	mainFlow: createStackNavigator({
 		ProjectList: ProjectListScreen,
+		ProjectCreate: ProjectCreateScreen,
 		ProjectDetail: ProjectDetailScreen
 	})
 })

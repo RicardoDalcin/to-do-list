@@ -1,35 +1,44 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import {
 	View,
-	Text,
 	StyleSheet,
-	StatusBar,
-	TouchableOpacity,
-	ScrollView,
-	FlatList
+	FlatList,
+	Text,
+	TouchableOpacity
 } from 'react-native'
-import { Button } from 'react-native-elements'
 import { fetchProjects } from '../actions'
-import { Feather } from '@expo/vector-icons'
 import { NavigationEvents } from 'react-navigation'
-import { navigate } from '../navigationRef'
 import ProjectListItem from '../components/ProjectListItem'
-import { Header } from 'react-native-elements'
 import AppHeader from '../components/AppHeader'
+import { Feather } from '@expo/vector-icons'
+import { navigate } from '../navigationRef'
 
 const ProjectListScreen = ({ dispatch, projects }) => {
-	console.log(projects.projects)
 	return (
 		<View style={styles.container}>
-			<AppHeader title='My Projects' />
-			<NavigationEvents onWillFocus={() => dispatch(fetchProjects())} />
-			<FlatList
-				data={projects.projects}
-				contentContainerStyle={{ flexGrow: 1 }}
-				keyExtractor={proj => proj._id}
-				renderItem={({ item }) => <ProjectListItem project={item} />}
+			<AppHeader
+				title='My Projects'
+				leftComponent={
+					<TouchableOpacity
+						onPress={() => {
+							navigate('ProjectCreate')
+						}}
+					>
+						<Feather name='plus' size={24} style={styles.plusIcon} />
+					</TouchableOpacity>
+				}
 			/>
+			<NavigationEvents onWillFocus={() => dispatch(fetchProjects())} />
+			<View style={{ margin: 15, flex: 1 }}>
+				<FlatList
+					data={projects.projects}
+					contentContainerStyle={{ flexGrow: 1 }}
+					keyExtractor={proj => proj._id}
+					renderItem={({ item }) => <ProjectListItem project={item} />}
+				/>
+				<Text>{projects.error}</Text>
+			</View>
 		</View>
 	)
 }
@@ -41,6 +50,9 @@ ProjectListScreen.navigationOptions = {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1
+	},
+	plusIcon: {
+		color: '#fff'
 	}
 })
 
