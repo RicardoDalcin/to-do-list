@@ -2,8 +2,13 @@ import React from 'react'
 import { StatusBar, TouchableOpacity, StyleSheet } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 import { Header } from 'react-native-elements'
+import { navigate } from '../navigationRef'
 
-const AppHeader = ({ title = '', leftComponent = null }) => {
+const AppHeader = ({
+	title = '',
+	leftComponent = null,
+	showRightComponent = true
+}) => {
 	return (
 		<>
 			<Header
@@ -14,9 +19,11 @@ const AppHeader = ({ title = '', leftComponent = null }) => {
 				}}
 				leftComponent={leftComponent}
 				rightComponent={
-					<TouchableOpacity onPress={() => navigate('ProjectDetail')}>
-						<Feather size={22} name='settings' style={styles.settings} />
-					</TouchableOpacity>
+					showRightComponent && (
+						<TouchableOpacity onPress={() => navigate('Settings')}>
+							<Feather size={22} name='settings' style={styles.settings} />
+						</TouchableOpacity>
+					)
 				}
 			/>
 			<StatusBar barStyle='light-content' />
