@@ -17,7 +17,7 @@ Next, make sure to edit the baseURL variable inside src/api/todo to math your AP
 
 ## Usage
 
-To begin with, if you're using your physical device to run the app, make sure to downlaod the Expo app from your app store. The, run the following command inside the project's folder and you'll be good to go:
+To begin with, if you're using your physical device to run the app, make sure to downlaod the Expo app from your app store. Then, run the following command inside the project's folder and you'll be good to go:
 
 ```node
 npm start
