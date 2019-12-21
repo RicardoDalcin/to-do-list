@@ -18,7 +18,6 @@ const SettingsScreen = ({ dispatch }) => {
 						<Feather size={30} name='chevron-left' style={styles.backIcon} />
 					</TouchableOpacity>
 				}
-				showRightComponent={false}
 			/>
 			<Spacer>
 				<Button onPress={() => dispatch(signout())} title='Sign out' />

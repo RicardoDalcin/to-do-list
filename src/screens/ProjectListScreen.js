@@ -28,6 +28,11 @@ const ProjectListScreen = ({ dispatch, projects }) => {
 						<Feather name='plus' size={24} style={styles.plusIcon} />
 					</TouchableOpacity>
 				}
+				rightComponent={
+					<TouchableOpacity onPress={() => navigate('Settings')}>
+						<Feather size={22} name='settings' style={styles.settings} />
+					</TouchableOpacity>
+				}
 			/>
 			<NavigationEvents onWillFocus={() => dispatch(fetchProjects())} />
 			<View style={{ margin: 15, flex: 1 }}>
@@ -53,6 +58,10 @@ const styles = StyleSheet.create({
 	},
 	plusIcon: {
 		color: '#fff'
+	},
+	settings: {
+		color: '#fff',
+		marginRight: 10
 	}
 })
 

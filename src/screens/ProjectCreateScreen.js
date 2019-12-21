@@ -1,16 +1,10 @@
 import React, { useRef, useState } from 'react'
 import { connect } from 'react-redux'
-import {
-	View,
-	StyleSheet,
-	TouchableOpacity,
-	Text,
-	FlatList
-} from 'react-native'
+import { View, StyleSheet, TouchableOpacity, FlatList } from 'react-native'
 import AppHeader from '../components/AppHeader'
 import { Feather } from '@expo/vector-icons'
 import { navigate } from '../navigationRef'
-import { Input, ListItem, Button, Overlay, Icon } from 'react-native-elements'
+import { Input, ListItem, Text, Overlay, Icon } from 'react-native-elements'
 import { ScrollView } from 'react-native-gesture-handler'
 import { addProject } from '../actions'
 
@@ -31,16 +25,45 @@ const ProjectCreateScreen = ({ dispatch, navigation }) => {
 						<Feather size={30} name='chevron-left' style={styles.backIcon} />
 					</TouchableOpacity>
 				}
+				rightComponent={
+					<TouchableOpacity
+						disabled={title === '' ? true : false}
+						onPress={() => {
+							dispatch(addProject({ title, color }))
+							navigation.navigate('ProjectList')
+						}}
+					>
+						<Text style={title ? styles.ok : styles.okDisabled}>OK</Text>
+					</TouchableOpacity>
+				}
 			/>
-			<Overlay isVisible={overlay} onBackdropPress={() => setOverlay(false)}>
+			<Overlay
+				height={150}
+				isVisible={overlay}
+				onBackdropPress={() => setOverlay(false)}
+			>
 				<FlatList
+					contentContainerStyle={{
+						display: 'flex',
+						flex: 1,
+						flexDirection: 'column',
+						justifyContent: 'center',
+						alignItems: 'center'
+					}}
+					numColumns={6}
 					data={[
-						'#ffb5e8',
-						'#b28dff',
-						'#dcd3ff',
-						'#aff8db',
+						'#A594F9',
+						'#d5aaff',
 						'#6eb5ff',
-						'#e7ffac'
+						'#ace7ff',
+						'#85ead7',
+						'#aff8db',
+						'#ccffdd',
+						'#e7ffac',
+						'#fff5ba',
+						'#ffdac1',
+						'#ffb7b2',
+						'#ff9aa2'
 					]}
 					keyExtractor={item => item}
 					renderItem={({ item }) => (
@@ -49,8 +72,14 @@ const ProjectCreateScreen = ({ dispatch, navigation }) => {
 								setColor(item)
 								setOverlay(false)
 							}}
+							style={{ margin: 5 }}
 						>
-							<Icon name='circle' type='material-community' color={item} />
+							<Icon
+								name='circle'
+								type='material-community'
+								size={30}
+								color={item}
+							/>
 						</TouchableOpacity>
 					)}
 				/>
@@ -82,13 +111,6 @@ const ProjectCreateScreen = ({ dispatch, navigation }) => {
 						bottomDivider
 					/>
 				</TouchableOpacity>
-				<Button
-					onPress={() => {
-						dispatch(addProject({ title, color }))
-						navigation.navigate('ProjectList')
-					}}
-					title='Create project'
-				/>
 			</ScrollView>
 		</View>
 	)
@@ -104,6 +126,18 @@ const styles = StyleSheet.create({
 	},
 	backIcon: {
 		color: '#fff'
+	},
+	ok: {
+		fontSize: 16,
+		fontWeight: 'bold',
+		color: '#fff',
+		marginRight: 10
+	},
+	okDisabled: {
+		fontSize: 16,
+		fontWeight: 'bold',
+		color: '#b4add9',
+		marginRight: 10
 	}
 })
 

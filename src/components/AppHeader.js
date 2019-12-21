@@ -7,7 +7,7 @@ import { navigate } from '../navigationRef'
 const AppHeader = ({
 	title = '',
 	leftComponent = null,
-	showRightComponent = true
+	rightComponent = null
 }) => {
 	return (
 		<>
@@ -18,24 +18,13 @@ const AppHeader = ({
 					style: { color: '#fff', fontSize: 16 }
 				}}
 				leftComponent={leftComponent}
-				rightComponent={
-					showRightComponent && (
-						<TouchableOpacity onPress={() => navigate('Settings')}>
-							<Feather size={22} name='settings' style={styles.settings} />
-						</TouchableOpacity>
-					)
-				}
+				rightComponent={rightComponent}
 			/>
 			<StatusBar barStyle='light-content' />
 		</>
 	)
 }
 
-const styles = StyleSheet.create({
-	settings: {
-		color: '#fff',
-		marginRight: 10
-	}
-})
+const styles = StyleSheet.create({})
 
 export default AppHeader

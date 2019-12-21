@@ -18,6 +18,11 @@ const ProjectDetailScreen = ({ navigation, projects }) => {
 						<Feather size={30} name='chevron-left' style={styles.backIcon} />
 					</TouchableOpacity>
 				}
+				rightComponent={
+					<TouchableOpacity onPress={() => navigate('Settings')}>
+						<Feather size={22} name='settings' style={styles.settings} />
+					</TouchableOpacity>
+				}
 				title={project.title}
 			/>
 		</View>
@@ -34,6 +39,10 @@ const styles = StyleSheet.create({
 	},
 	backIcon: {
 		color: '#fff'
+	},
+	settings: {
+		color: '#fff',
+		marginRight: 10
 	}
 })
 
