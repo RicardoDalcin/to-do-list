@@ -14,6 +14,7 @@ import ProjectDetailScreen from './src/screens/ProjectDetailScreen'
 import LoadingScreen from './src/screens/LoadingScreen'
 import ProjectCreateScreen from './src/screens/ProjectCreateScreen'
 import SettingsScreen from './src/screens/SettingsScreen'
+import TaskCreateScreen from './src/screens/TaskCreateScreen'
 
 const store = createStore(rootReducer, applyMiddleware(thunk))
 
@@ -27,6 +28,7 @@ const switchNavigator = createSwitchNavigator({
 		ProjectList: ProjectListScreen,
 		ProjectCreate: ProjectCreateScreen,
 		ProjectDetail: ProjectDetailScreen,
+		TaskCreate: TaskCreateScreen,
 		Settings: SettingsScreen
 	})
 })

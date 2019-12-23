@@ -49,7 +49,9 @@ const ProjectDetailScreen = ({ dispatch, navigation, projects, tasks }) => {
 					margin: 20,
 					backgroundColor: '#7371fc'
 				}}
-				onPress={() => navigation.navigate('TaskCreate')}
+				onPress={() =>
+					navigation.navigate('TaskCreate', { projectId: project._id })
+				}
 				icon={<Feather name='plus' size={20} style={{ color: '#fff' }} />}
 			/>
 		</View>
