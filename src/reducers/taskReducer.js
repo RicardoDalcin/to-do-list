@@ -64,7 +64,7 @@ const taskReducer = (state = initialState, action) => {
 				...state,
 				loading: false,
 				error: null,
-				tasks: state.tasks.filter(task => task._id !== action.payload._id)
+				tasks: state.tasks.filter(task => task._id !== action.payload.task._id)
 			}
 		case COMPLETE_TASK_FAILURE:
 			return {
