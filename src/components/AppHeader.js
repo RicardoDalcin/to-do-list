@@ -7,12 +7,13 @@ import { navigate } from '../navigationRef'
 const AppHeader = ({
 	title = '',
 	leftComponent = null,
-	rightComponent = null
+	rightComponent = null,
+	bgColor = '#7371fc'
 }) => {
 	return (
 		<>
 			<Header
-				backgroundColor='#7371fc'
+				backgroundColor={bgColor}
 				centerComponent={{
 					text: title,
 					style: { color: '#fff', fontSize: 16 }
