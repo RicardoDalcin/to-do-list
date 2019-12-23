@@ -7,6 +7,7 @@ import { NavigationEvents, FlatList } from 'react-navigation'
 import { navigate } from '../navigationRef'
 import { fetchTasks } from '../actions/task'
 import TaskItem from '../components/TaskItem'
+import { Button } from 'react-native-elements'
 
 const ProjectDetailScreen = ({ dispatch, navigation, projects, tasks }) => {
 	const project = projects.projects.find(
@@ -36,6 +37,20 @@ const ProjectDetailScreen = ({ dispatch, navigation, projects, tasks }) => {
 				data={tasks.tasks}
 				keyExtractor={task => task._id}
 				renderItem={({ item }) => <TaskItem dispatch={dispatch} task={item} />}
+			/>
+			<Button
+				buttonStyle={{
+					borderRadius: 50,
+					height: 40,
+					width: 40,
+					position: 'absolute',
+					bottom: 0,
+					right: 0,
+					margin: 20,
+					backgroundColor: '#7371fc'
+				}}
+				onPress={() => navigation.navigate('TaskCreate')}
+				icon={<Feather name='plus' size={20} style={{ color: '#fff' }} />}
 			/>
 		</View>
 	)
