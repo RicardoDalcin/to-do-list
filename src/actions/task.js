@@ -1,4 +1,7 @@
 import {
+	COMPLETE_TASK_STARTED,
+	COMPLETE_TASK_SUCCESS,
+	COMPLETE_TASK_FAILURE,
 	ADD_TASK_STARTED,
 	ADD_TASK_SUCCESS,
 	ADD_TASK_FAILURE,
@@ -69,6 +72,40 @@ const addTaskStarted = () => ({
 
 const addTaskFailure = error => ({
 	type: ADD_TASK_FAILURE,
+	payload: {
+		error
+	}
+})
+
+export const completeTask = ({ taskId }) => {
+	return (dispatch, getState) => {
+		dispatch(completeTaskStarted())
+
+		todoApi
+			.put(`/tasks/${taskId}`, { completed: true })
+			.then(res => {
+				dispatch(completeTaskSuccess(res.data))
+			})
+			.catch(err => {
+				console.log(err.message)
+				dispatch(completeTaskFailure(err.response.data.error))
+			})
+	}
+}
+
+const completeTaskSuccess = task => ({
+	type: COMPLETE_TASK_SUCCESS,
+	payload: {
+		...task
+	}
+})
+
+const completeTaskStarted = () => ({
+	type: COMPLETE_TASK_STARTED
+})
+
+const completeTaskFailure = error => ({
+	type: COMPLETE_TASK_FAILURE,
 	payload: {
 		error
 	}

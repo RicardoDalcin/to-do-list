@@ -2,21 +2,28 @@ import React, { useState } from 'react'
 import { ListItem, CheckBox } from 'react-native-elements'
 import { StyleSheet } from 'react-native'
 import { Feather } from '@expo/vector-icons'
+import { completeTask } from '../actions'
 
-const TaskItem = ({ task }) => {
+const TaskItem = ({ task, dispatch }) => {
 	const [completed, setCompleted] = useState(false)
 
 	return (
 		<ListItem
 			title={task.title}
 			titleStyle={{ fontSize: 18, color: '#262626' }}
-			onPress={() => setCompleted(!completed)}
+			onPress={() => {
+				setCompleted(!completed)
+				dispatch(completeTask({ taskId: task._id }))
+			}}
 			bottomDivider
 			containerStyle={{ margin: 10, paddingVertical: 0 }}
 			leftElement={
 				<CheckBox
 					checked={completed}
-					onPress={() => setCompleted(!completed)}
+					onPress={() => {
+						setCompleted(!completed)
+						dispatch(completeTask({ taskId: task._id }))
+					}}
 					uncheckedIcon={
 						<Feather name='square' size={22} style={styles.uncheckedIcon} />
 					}

@@ -35,7 +35,7 @@ const ProjectDetailScreen = ({ dispatch, navigation, projects, tasks }) => {
 			<FlatList
 				data={tasks.tasks}
 				keyExtractor={task => task._id}
-				renderItem={({ item }) => <TaskItem task={item} />}
+				renderItem={({ item }) => <TaskItem dispatch={dispatch} task={item} />}
 			/>
 		</View>
 	)
