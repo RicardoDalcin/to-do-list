@@ -3,9 +3,12 @@ import { connect } from 'react-redux'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 import AppHeader from '../components/AppHeader'
+import { NavigationEvents, FlatList } from 'react-navigation'
 import { navigate } from '../navigationRef'
+import { fetchTasks } from '../actions/task'
+import TaskItem from '../components/TaskItem'
 
-const ProjectDetailScreen = ({ navigation, projects }) => {
+const ProjectDetailScreen = ({ dispatch, navigation, projects, tasks }) => {
 	const project = projects.projects.find(
 		proj => proj._id === navigation.getParam('_id')
 	)
@@ -24,6 +27,15 @@ const ProjectDetailScreen = ({ navigation, projects }) => {
 					</TouchableOpacity>
 				}
 				title={project.title}
+				// bgColor={project.color}
+			/>
+			<NavigationEvents
+				onWillFocus={() => dispatch(fetchTasks({ projectId: project._id }))}
+			/>
+			<FlatList
+				data={tasks.tasks}
+				keyExtractor={task => task._id}
+				renderItem={({ item }) => <TaskItem task={item} />}
 			/>
 		</View>
 	)
@@ -46,6 +58,6 @@ const styles = StyleSheet.create({
 	}
 })
 
-const mapStateToProps = ({ projects }) => ({ projects })
+const mapStateToProps = ({ projects, tasks }) => ({ projects, tasks })
 
 export default connect(mapStateToProps)(ProjectDetailScreen)
