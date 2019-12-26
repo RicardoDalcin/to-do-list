@@ -11,10 +11,6 @@ const TaskItem = ({ task, dispatch }) => {
 		<ListItem
 			title={task.title}
 			titleStyle={{ fontSize: 18, color: '#262626' }}
-			// onPress={() => {
-			// 	setCompleted(!completed)
-			// 	dispatch(completeTask({ taskId: task._id }))
-			// }}
 			bottomDivider
 			containerStyle={{ margin: 10, paddingVertical: 0 }}
 			leftElement={

@@ -1,8 +1,6 @@
 import React from 'react'
-import { StatusBar, TouchableOpacity, StyleSheet } from 'react-native'
-import { Feather } from '@expo/vector-icons'
+import { StatusBar, StyleSheet } from 'react-native'
 import { Header } from 'react-native-elements'
-import { navigate } from '../navigationRef'
 
 const AppHeader = ({
 	title = '',
