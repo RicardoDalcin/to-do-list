@@ -1,23 +1,15 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { View, StyleSheet, TouchableOpacity, FlatList } from 'react-native'
+import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import AppHeader from '../components/AppHeader'
 import { Feather } from '@expo/vector-icons'
 import { navigate } from '../navigationRef'
-import { Input, ListItem, Text, Overlay, Icon } from 'react-native-elements'
+import { Input, Text } from 'react-native-elements'
 import { ScrollView } from 'react-native-gesture-handler'
 import { addTask } from '../actions'
-import DatePicker from 'react-native-datepicker'
-import ColorPicker from '../components/ColorPicker'
 
 const TaskCreateScreen = ({ dispatch, navigation }) => {
-	const today = new Date()
-	const y = today.getFullYear()
-	const m = today.getMonth() < 10 ? '0' + today.getMonth() : today.getMonth()
-	const d = today.getDate() < 10 ? '0' + today.getDate() : today.getDate()
-
 	const [title, setTitle] = useState('')
-	const [deadline, setDeadline] = useState(`${y}-${m}-${d}`)
 
 	return (
 		<View style={styles.container}>
@@ -50,27 +42,6 @@ const TaskCreateScreen = ({ dispatch, navigation }) => {
 					onChangeText={setTitle}
 					placeholder='Name your task'
 					style={styles.input}
-				/>
-				<DatePicker
-					style={{ width: 320 }}
-					date={deadline}
-					mode='date'
-					// placeholder='Select date'
-					format='YYYY-MM-DD'
-					minDate={`${y}-${m}-${d}`}
-					// confirmBtnText='Confirm'
-					// cancelBtnText='Cancel'
-					customStyles={{
-						dateIcon: {
-							display: 'none'
-						},
-						dateInput: {
-							borderTopWidth: 0,
-							borderLeftWidth: 0,
-							borderRightWidth: 0
-						}
-					}}
-					onDateChange={setDeadline}
 				/>
 			</ScrollView>
 		</View>
