@@ -10,7 +10,7 @@ import todoApi from '../api/todo'
 import { AsyncStorage } from 'react-native'
 
 export const authenticate = ({ login, password }) => {
-	return (dispatch, getState) => {
+	return dispatch => {
 		dispatch(authenticateStarted())
 		todoApi
 			.post('/auth/authenticate', { login, password })
@@ -40,7 +40,7 @@ const authenticateFailure = error => ({
 })
 
 export const register = ({ username, name, email, password }) => {
-	return (dispatch, getState) => {
+	return dispatch => {
 		dispatch(authenticateStarted())
 
 		todoApi
@@ -57,7 +57,7 @@ export const register = ({ username, name, email, password }) => {
 }
 
 export const tryLocalSignin = () => {
-	return async (dispatch, getState) => {
+	return async dispatch => {
 		const token = await AsyncStorage.getItem('token')
 		if (token) {
 			dispatch(authenticateSuccess(token))

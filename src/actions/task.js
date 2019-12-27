@@ -14,7 +14,7 @@ import {
 import todoApi from '../api/todo'
 
 export const fetchTasks = ({ projectId }) => {
-	return (dispatch, getState) => {
+	return dispatch => {
 		dispatch(fetchTasksStarted())
 		todoApi
 			.get(`/tasks/fetch/${projectId}`)
@@ -44,7 +44,7 @@ const fetchTasksFailure = error => ({
 })
 
 export const addTask = ({ title, projectId }) => {
-	return (dispatch, getState) => {
+	return dispatch => {
 		dispatch(addTaskStarted())
 
 		todoApi
@@ -78,7 +78,7 @@ const addTaskFailure = error => ({
 })
 
 export const completeTask = ({ taskId }) => {
-	return (dispatch, getState) => {
+	return dispatch => {
 		dispatch(completeTaskStarted())
 
 		todoApi

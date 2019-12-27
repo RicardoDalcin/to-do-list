@@ -11,7 +11,7 @@ import {
 import todoApi from '../api/todo'
 
 export const fetchProjects = () => {
-	return (dispatch, getState) => {
+	return dispatch => {
 		dispatch(fetchProjectsStarted())
 		todoApi
 			.get('/projects')
@@ -41,7 +41,7 @@ const fetchProjectsFailure = error => ({
 })
 
 export const addProject = ({ title, color }) => {
-	return (dispatch, getState) => {
+	return dispatch => {
 		dispatch(addProjectStarted())
 
 		todoApi
