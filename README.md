@@ -13,7 +13,7 @@ npm install
 npm install -g expo-cli
 ```
 
-Next, make sure to edit the baseURL variable inside src/api/todo to math your API's URL (feel free to use this project's companion API: https://github.com/RicardoDalcin/to-do-list-api)
+Next, make sure to edit the baseURL variable inside src/api/todo to match your API's URL (feel free to use this project's companion API: https://github.com/RicardoDalcin/to-do-list-api)
 
 ## Usage
 
